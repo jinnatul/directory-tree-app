@@ -1,40 +1,97 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
+# Directory Tree Viewer
+
+An interactive, expandable directory tree UI built with **Next.js** using **React** and **API routes**, featuring:
+
+- Expand/collapse functionality
+- Double-click to set new root
+- Path sync with browser address bar
+- Backend API with in-memory directory structure
+- Dockerized for easy deployment
+
+## Demo
+
+![Directory Tree Demo](demo.gif)
+
+## Features
+
+- 📂 **Incremental Loading**: Only fetch children when needed
+- 🖱️ **Double-click to Re-root**: Change root directory on double-click
+- 🔗 **Path-Synced URL**: Syncs with browser address bar
+- 🧠 **In-Memory Tree**: No database required, easy to extend
+- 🐳 **Dockerized**: Ready for containerized environments
+
+## 🛠 Tech Stack
+
+| Layer            | Tool                       |
+| ---------------- | -------------------------- |
+| Frontend         | React (Next.js App Router) |
+| Backend          | API Route (Next.js)        |
+| Types            | TypeScript                 |
+| State Management | useState/useEffect         |
+| Container        | Docker                     |
 
 ## Getting Started
 
-First, run the development server:
+### Run Locally (Node.js)
 
 ```bash
+# 1. Install dependencies
+npm install
+
+# 2. Run the development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
+# Visit: http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Run with Docker
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+```bash
+# Build the Docker image
+docker build -t directory-tree-app .
 
-[API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+# Run the container
+docker run -p 3000:3000 directory-tree-app
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) instead of React pages.
+# Note: You might need to use the sudo command for permission.
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## API Specification
 
-## Learn More
+```bash
+# Returns children of the given directory path.
+GET /api/tree?path=/Projects
 
-To learn more about Next.js, take a look at the following resources:
+# directory response
+[
+  {
+    "name": "Dir 1",
+    "path": "/Dir 1",
+    "hasChildren": true
+  },
+  {
+    "name": "Dir 2",
+    "path": "/Dir 2",
+    "hasChildren": true
+  },
+  {
+    "name": "Dir 3",
+    "path": "/Dir 3",
+    "hasChildren": true
+  },
+  {
+    "name": "Projects",
+    "path": "/Projects",
+    "hasChildren": true
+  },
+  {
+    "name": "Docs",
+    "path": "/Docs",
+    "hasChildren": true
+  }
+]
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn-pages-router) - an interactive Next.js tutorial.
+## 🧑‍💻 Author
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.
+Made with ❤️ by [Zinnatul Islam](https://www.linkedin.com/in/zinnatul)
