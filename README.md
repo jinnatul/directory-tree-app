@@ -10,7 +10,7 @@ An interactive, expandable directory tree UI built with **Next.js** using **Reac
 
 ## Demo
 
-![Directory Tree Demo](demo.gif)
+![Directory Tree Demo](https://github.com/user-attachments/assets/c44db882-c4c3-4213-a67f-c284fcf48ef5)
 
 ## Features
 
